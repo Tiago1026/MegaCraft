@@ -42,9 +42,9 @@
         <main>
             <section class="hero">
                 <h1>
-                    <span class="sr-only">MegaCraft</span
-                    ><img
-                        src="images/logo.png"
+                    <span class="sr-only">MegaCraft</span>
+                    <img
+                        src="Images/logo.png"
                         alt="MegaCraft logo"
                         class="logo_pulse"
                     />
@@ -60,22 +60,22 @@
             <section class="vote-links container">
                 <a href="https://dc.gg/megacraft" target="_blank">
                     <img
-                        src="images/icons/discord.svg"
+                        src="Images/icons/discord.svg"
                         alt="Discord"
                         class="icon"
-                    />Discord</a
-                >
+                    />Discord
+                </a>
                 <a href="https://minecraft-mp.com/server/344837/vote/" target="_blank">
-                    <img src="images/icons/vote.svg" alt="Vote" class="icon" />
-                    Vote</a
-                >
-                <a href="" target="_blank"
-                    ><img
-                        src="images/icons/store.svg"
+                    <img src="Images/icons/vote.svg" alt="Vote" class="icon" />
+                    Vote
+                </a>
+                <a href="" target="_blank">
+                    <img
+                        src="Images/icons/store.svg"
                         alt="Loja"
                         class="icon"
-                    />Loja</a
-                >
+                    />Loja
+                </a>
             </section>
         </main>
         <footer>
@@ -89,41 +89,47 @@
                 </div>
             </div>
         </footer>
-<script>
-    // IP do servidor MegaCraft
-    const serverIP = "megacraft.mc.land";
+        <script>
+            // IP do servidor MegaCraft
+            const serverIP = "megacraft.mc.land";
 
-    function copyToClipboard() {
-        navigator.clipboard.writeText(serverIP)
-            .then(() => alert(`IP copiado: ${serverIP}`))
-            .catch(() => {
-                // Fallback para navegadores antigos
-                const textarea = document.createElement("textarea");
-                textarea.value = serverIP;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand("copy");
-                document.body.removeChild(textarea);
-                alert(`IP copiado: ${serverIP}`);
-            });
-    }
+            function copyToClipboard() {
+                navigator.clipboard.writeText(serverIP)
+                    .then(() => alert(`IP copiado: ${serverIP}`))
+                    .catch(() => {
+                        // Fallback para navegadores antigos
+                        const textarea = document.createElement("textarea");
+                        textarea.value = serverIP;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(textarea);
+                        alert(`IP copiado: ${serverIP}`);
+                    });
+            }
 
-    // Função para atualizar o número de jogadores online
-    function updatePlayerCount() {
-        fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
-            .then((response) => response.json())
-            .then((data) => {
-                // Verifica se o servidor está online e tem dados de jogadores
-                const playerCount = (data.online && data.players?.online) ? data.players.online : 0;
-                document.getElementById("player-count").textContent = playerCount;
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar o número de jogadores:", error);
-                // Não altera o contador para evitar mostrar "0" em caso de erro
-            });
-    }
+            // Função para atualizar o número de jogadores online
+            function updatePlayerCount() {
+                fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
+                    .then((response) => {
+                        if (!response.ok) throw new Error("Erro na resposta da API");
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.online && data.players && data.players.online !== undefined) {
+                            document.getElementById("player-count").textContent = data.players.online;
+                        } else {
+                            console.log("Servidor offline ou dados incompletos");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao buscar jogadores:", error);
+                    });
+            }
 
-    // Atualiza imediatamente e a cada 1 minuto
-    updatePlayerCount();
-    setInterval(updatePlayerCount, 60000);
-</script>
+            // Atualiza imediatamente e a cada 1 minuto
+            updatePlayerCount();
+            setInterval(updatePlayerCount, 60000);
+        </script>
+    </body>
+</html>
