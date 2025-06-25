@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Primary Meta Tags -->
         <title>MegaCraft</title>
-        <meta name="title" content="YourServer" />
+        <meta name="title" content="MegaCraft" />
         <meta
             name="description"
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam sem fringilla ut morbi. Urna duis convallis convallis tellus id interdum velit."
+            content="Junte-se ao MegaCraft! O melhor servidor para você jogar com seus amigos. Entre agora e faça parte da nossa comunidade!"
         />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourserver.com/" />
-        <meta property="og:title" content="YourServer" />
+        <meta property="og:url" content="https://megacraft.mc.land/" />
+        <meta property="og:title" content="MegaCraft" />
         <meta
             property="og:description"
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam sem fringilla ut morbi. Urna duis convallis convallis tellus id interdum velit."
+            content="Junte-se ao MegaCraft! O melhor servidor para você jogar com seus amigos. Entre agora e faça parte da nossa comunidade!"
         />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://yourserver.com/" />
-        <meta property="twitter:title" content="YourServer" />
+        <meta property="twitter:url" content="https://megacraft.mc.land/" />
+        <meta property="twitter:title" content="MegaCraft" />
         <meta
             property="twitter:description"
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam sem fringilla ut morbi. Urna duis convallis convallis tellus id interdum velit."
+            content="Junte-se ao MegaCraft! O melhor servidor para você jogar com seus amigos. Entre agora e faça parte da nossa comunidade!"
         />
         <meta name="theme-color" content="#ffad32" />
         <link rel="stylesheet" href="style.css" />
@@ -42,39 +42,39 @@
         <main>
             <section class="hero">
                 <h1>
-                    <span class="sr-only">YourServer</span
+                    <span class="sr-only">MegaCraft</span
                     ><img
                         src="images/logo.png"
-                        alt="yourserver logo"
+                        alt="MegaCraft logo"
                         class="logo_pulse"
                     />
                 </h1>
             </section>
             <section class="container">
                 <button onclick="copyToClipboard()" class="online-players">
-                    Join another
-                    <strong><span id="player-count">14</span></strong> players
-                    playing!
+                    Junte-se a mais
+                    <strong><span id="player-count">14</span></strong> jogadores
+                    online!
                 </button>
             </section>
             <section class="vote-links container">
-                <a href="" target="_blank">
+                <a href="https://dc.gg/megacraft" target="_blank">
                     <img
                         src="images/icons/discord.svg"
-                        alt=""
+                        alt="Discord"
                         class="icon"
                     />Discord</a
                 >
                 <a href="" target="_blank">
-                    <img src="images/icons/vote.svg" alt="" class="icon" />
+                    <img src="images/icons/vote.svg" alt="Vote" class="icon" />
                     Vote</a
                 >
                 <a href="" target="_blank"
                     ><img
                         src="images/icons/store.svg"
-                        alt=""
+                        alt="Loja"
                         class="icon"
-                    />Store</a
+                    />Loja</a
                 >
             </section>
         </main>
@@ -82,15 +82,15 @@
             <div class="container">
                 <div class="footer-info">
                     <p>
-                        &copy; 2023 YourServer. All rights reserved. <br />
-                        <a href="">Privacy Policy</a> |
-                        <a href="">Terms of Service</a>
+                        &copy; 2023 MegaCraft. Todos os direitos reservados. <br />
+                        <a href="">Política de Privacidade</a> |
+                        <a href="">Termos de Serviço</a>
                     </p>
                 </div>
             </div>
         </footer>
         <script>
-            // Replace 'your-server-ip' with the actual IP or server address
+            // IP do servidor MegaCraft
             const serverIP = "megacraft.mc.land";
 
             function copyToClipboard() {
@@ -102,17 +102,16 @@
                 document.body.removeChild(textarea);
             }
 
-            // Function to update the player count
+            // Função para atualizar o número de jogadores online
             function updatePlayerCount() {
-                fetch(`https://api.mcsrvstat.us/2/${megacraft.mc.land}`)
+                fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
                     .then((response) => response.json())
                     .then((data) => {
-                        const playerCount = data.players.online;
-                        document.getElementById("player-count").textContent =
-                            playerCount;
+                        const playerCount = data.players && data.players.online ? data.players.online : 0;
+                        document.getElementById("player-count").textContent = playerCount;
                     })
                     .catch((error) => {
-                        console.error("Error fetching player count:", error);
+                        console.error("Erro ao buscar o número de jogadores:", error);
                     });
             }
 
