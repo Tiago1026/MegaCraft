@@ -2,111 +2,145 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Tiago Scripter</title>
+  <title>MegaCraft - Servidor de Minecraft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #181818;
-      color: #fff;
       margin: 0;
       padding: 0;
+      background: #181818;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
-    .sidebar {
+    .header {
+      background: #222;
+      padding: 30px 0 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .header img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      letter-spacing: 2px;
+    }
+    .header p {
+      margin: 10px 0 0 0;
+      font-size: 1.2em;
+      color: #aaa;
+    }
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .link-card {
       background: #23272a;
-      width: 200px;
-      height: 100vh;
-      position: fixed;
-      top: 0; left: 0;
+      border-radius: 10px;
+      padding: 20px 30px;
+      text-align: center;
+      min-width: 160px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1em;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 30px;
     }
-    .sidebar a {
+    .link-card:hover {
+      background: #7289da;
+      transform: translateY(-4px) scale(1.03);
       color: #fff;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 10px 20px;
-      border-radius: 5px;
+    }
+    .link-card img {
+      width: 36px;
+      margin-bottom: 8px;
+    }
+    .ip-section {
       background: #2c2f33;
-      transition: background 0.2s;
-      width: 80%;
+      margin: 40px auto 0 auto;
+      padding: 25px 20px;
+      border-radius: 10px;
+      max-width: 400px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    .sidebar a:hover {
-      background: #7289da;
+    .ip-section h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.5em;
     }
-    .main {
-      margin-left: 220px;
-      padding: 40px;
-    }
-    .card {
-      background: #23272a;
-      border-radius: 8px;
-      padding: 30px;
-      max-width: 500px;
-      margin: 0 auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    input[type="text"] {
-      width: 80%;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 10px;
-    }
-    button {
+    .ip-section .ip {
+      font-size: 1.3em;
+      background: #181818;
       padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background: #7289da;
-      color: #fff;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 10px 0;
+      letter-spacing: 1px;
       font-weight: bold;
+      color: #00ff99;
       cursor: pointer;
-      transition: background 0.2s;
+      user-select: all;
     }
-    button:hover {
-      background: #99aab5;
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #888;
+      font-size: 0.95em;
+      padding-bottom: 20px;
     }
-    .result {
-      margin-top: 15px;
-      background: #2c2f33;
-      padding: 10px;
-      border-radius: 5px;
-      word-break: break-all;
-    }
-    @media (max-width: 700px) {
-      .sidebar { width: 100vw; height: auto; flex-direction: row; position: static; }
-      .main { margin-left: 0; padding: 10px; }
+    @media (max-width: 600px) {
+      .links { flex-direction: column; gap: 15px; }
+      .header h1 { font-size: 2em; }
+      .ip-section { max-width: 95vw; }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <a href="https://youtube.com/" target="_blank">YouTube</a>
-    <a href="https://discord.com/" target="_blank">Discord</a>
-    <a href="https://github.com/Tiago1026" target="_blank">GitHub</a>
+  <div class="header">
+    <!-- Se quiser, troque a imagem abaixo pelo logo do seu servidor -->
+    <!-- <img src="URL_DO_SEU_LOGO.png" alt="Logo MegaCraft"> -->
+    <h1>MegaCraft</h1>
+    <p>Servidor de Minecraft sem regras</p>
+  </div>
+  <div class="links">
+    <a class="link-card" href="https://discord.gg/seuconvite" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" alt="Discord" style="filter:invert(1);">
+      Discord
+    </a>
+    <a class="link-card" href="https://loja.megacraft.com.br" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shoppingcart.svg" alt="Loja" style="filter:invert(1);">
+      Loja
+    </a>
+    <a class="link-card" href="https://status.megacraft.com.br" target="_blank">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/server.svg" alt="Status" style="filter:invert(1);">
+      Status
+    </a>
     <!-- Adicione mais links se quiser -->
   </div>
-  <div class="main">
-    <h1>Tiago Scripter</h1>
-    <div class="card">
-      <h2>Gerar Loadstring</h2>
-      <p>Digite a URL do seu script para gerar o loadstring:</p>
-      <input type="text" id="scriptUrl" placeholder="Cole a URL do seu script aqui">
-      <button onclick="gerarLoadstring()">Gerar</button>
-      <div class="result" id="resultado"></div>
-    </div>
+  <div class="ip-section">
+    <h2>Entre com outros jogadores!</h2>
+    <div class="ip" onclick="copiarIP()">megacraft.com.br</div>
+    <div id="copyMsg" style="color:#00ff99; font-size:0.95em; margin-top:8px; display:none;">IP copiado!</div>
+  </div>
+  <div class="footer">
+    &copy; 2024 MegaCraft. Site feito por Tiago1026.
   </div>
   <script>
-    function gerarLoadstring() {
-      var url = document.getElementById('scriptUrl').value.trim();
-      var resultado = document.getElementById('resultado');
-      if(url) {
-        resultado.innerText = 'loadstring(game:HttpGet("' + url + '"))()';
-      } else {
-        resultado.innerText = '';
-      }
+    function copiarIP() {
+      const ip = "megacraft.com.br";
+      navigator.clipboard.writeText(ip);
+      document.getElementById('copyMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('copyMsg').style.display = 'none';
+      }, 1500);
     }
   </script>
 </body>
