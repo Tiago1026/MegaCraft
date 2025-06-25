@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tiago Scripter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #181818;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .sidebar {
+      background: #23272a;
+      width: 200px;
+      height: 100vh;
+      position: fixed;
+      top: 0; left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background: #2c2f33;
+      transition: background 0.2s;
+      width: 80%;
+      text-align: center;
+    }
+    .sidebar a:hover {
+      background: #7289da;
+    }
+    .main {
+      margin-left: 220px;
+      padding: 40px;
+    }
+    .card {
+      background: #23272a;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #7289da;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #99aab5;
+    }
+    .result {
+      margin-top: 15px;
+      background: #2c2f33;
+      padding: 10px;
+      border-radius: 5px;
+      word-break: break-all;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100vw; height: auto; flex-direction: row; position: static; }
+      .main { margin-left: 0; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <a href="https://youtube.com/" target="_blank">YouTube</a>
+    <a href="https://discord.com/" target="_blank">Discord</a>
+    <a href="https://github.com/Tiago1026" target="_blank">GitHub</a>
+    <!-- Adicione mais links se quiser -->
+  </div>
+  <div class="main">
+    <h1>Tiago Scripter</h1>
+    <div class="card">
+      <h2>Gerar Loadstring</h2>
+      <p>Digite a URL do seu script para gerar o loadstring:</p>
+      <input type="text" id="scriptUrl" placeholder="Cole a URL do seu script aqui">
+      <button onclick="gerarLoadstring()">Gerar</button>
+      <div class="result" id="resultado"></div>
+    </div>
+  </div>
+  <script>
+    function gerarLoadstring() {
+      var url = document.getElementById('scriptUrl').value.trim();
+      var resultado = document.getElementById('resultado');
+      if(url) {
+        resultado.innerText = 'loadstring(game:HttpGet("' + url + '"))()';
+      } else {
+        resultado.innerText = '';
+      }
+    }
+  </script>
+</body>
+</html>
