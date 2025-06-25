@@ -22,10 +22,26 @@
     box-sizing: border-box;
 }
 
-/* Default styles for the body */
+/* Body with background image and overlay */
 body {
     font-family: "Outfit", sans-serif;
-    background-color: var(--background-color);
+    position: relative;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* Screen reader-only element */
@@ -70,15 +86,10 @@ body {
 .hero {
     position: relative;
     width: 100%;
-    background-image: url("/images/bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50vh;
-    box-shadow: 0px -50px 299px 155px var(--box-shadow-color) inset;
     padding: 0 1rem;
 }
 
@@ -197,9 +208,15 @@ footer a {
     color: var(--link-color);
 }
 
+/* Ensure content stays above background */
+main, footer {
+    position: relative;
+    z-index: 1;
+}
+
 @media (max-width: 48.0625rem) {
     .hero {
-        box-shadow: 0px -45px 90px 45px var(--box-shadow-color) inset;
+        box-shadow: none;
     }
     .online-players {
         margin-top: 1rem;
