@@ -104,7 +104,7 @@
 
             // Função para atualizar o número de jogadores online
             function updatePlayerCount() {
-                fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
+                fetch(`https://api.mcsrvstat.us/2/${megacraft.mc.land}`)
                     .then((response) => response.json())
                     .then((data) => {
                         const playerCount = data.players && data.players.online ? data.players.online : 0;
