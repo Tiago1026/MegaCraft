@@ -89,34 +89,41 @@
                 </div>
             </div>
         </footer>
-        <script>
-            // IP do servidor MegaCraft
-            const serverIP = "megacraft.mc.land";
+<script>
+    // IP do servidor MegaCraft
+    const serverIP = "megacraft.mc.land";
 
-            function copyToClipboard() {
+    function copyToClipboard() {
+        navigator.clipboard.writeText(serverIP)
+            .then(() => alert(`IP copiado: ${serverIP}`))
+            .catch(() => {
+                // Fallback para navegadores antigos
                 const textarea = document.createElement("textarea");
                 textarea.value = serverIP;
                 document.body.appendChild(textarea);
                 textarea.select();
                 document.execCommand("copy");
                 document.body.removeChild(textarea);
-            }
+                alert(`IP copiado: ${serverIP}`);
+            });
+    }
 
-            // Função para atualizar o número de jogadores online
-            function updatePlayerCount() {
-                fetch(`https://api.mcsrvstat.us/2/${megacraft.mc.land}`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        const playerCount = data.players && data.players.online ? data.players.online : 0;
-                        document.getElementById("player-count").textContent = playerCount;
-                    })
-                    .catch((error) => {
-                        console.error("Erro ao buscar o número de jogadores:", error);
-                    });
-            }
+    // Função para atualizar o número de jogadores online
+    function updatePlayerCount() {
+        fetch(`https://api.mcsrvstat.us/2/${serverIP}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Verifica se o servidor está online e tem dados de jogadores
+                const playerCount = (data.online && data.players?.online) ? data.players.online : 0;
+                document.getElementById("player-count").textContent = playerCount;
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar o número de jogadores:", error);
+                // Não altera o contador para evitar mostrar "0" em caso de erro
+            });
+    }
 
-            updatePlayerCount();
-            setInterval(updatePlayerCount, 60000);
-        </script>
-    </body>
-</html>
+    // Atualiza imediatamente e a cada 1 minuto
+    updatePlayerCount();
+    setInterval(updatePlayerCount, 60000);
+</script>
